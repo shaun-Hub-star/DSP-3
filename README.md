@@ -1,3 +1,3 @@
 # DSP-3
-ido ya pah
+ido ya zayan shel aromot
 
