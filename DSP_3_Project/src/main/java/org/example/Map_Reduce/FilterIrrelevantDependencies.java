@@ -20,6 +20,7 @@ public class FilterIrrelevantDependencies {
         }
 
         @Override
+        //FIXME? check key here
         public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             Graph g = new Graph(value.toString());
             for(String path : g.getFullDependencyPathFromNounToNoun()){

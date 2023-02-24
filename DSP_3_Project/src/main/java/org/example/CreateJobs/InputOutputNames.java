@@ -1,6 +1,7 @@
 package org.example.CreateJobs;
 
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 enum ClassNames {
@@ -23,51 +24,71 @@ public class InputOutputNames {
     }
 
     //fields
-    private static String[] argumentInput;
+    private static MainArgs argumentInput;
     private static final HashMap<ClassNames, InputOutput> IO_MAP = new HashMap<>();
     //public static String outputName = "part-r-00000";
 
-    //constructor
-    private InputOutputNames(String[] args) {
-        /*args:
-        * 0: syntactic n-gram
-        * 1: hypernym
-        * 2: DP_MIN
-        * 3: output path
-        */
+    private final String inputSuffix = ""; //FIXME? assumes that when given a directory, the map reduce procedure will run on all files within that directory
+    private final String outputPrefix;
 
+    //constructor
+    private InputOutputNames(MainArgs args) {
         argumentInput = args;
+        outputPrefix = finalOutput().substring(0, finalOutput().lastIndexOf("/")+1);
         initializeInputOutput();
     }
 
-    public static void init(String[] argumentInput) {
+    public static void init(MainArgs argumentInput) {
         new InputOutputNames(argumentInput);
     }
 
     private void initializeInputOutput() {
-        String outputPrefix = argumentInput[1].substring(0, argumentInput[1].lastIndexOf("/")+1);
-        String inputSuffix = "/"+outputName;//TODO: change to a new name which will be the same as the merged name
+        addStep(ClassNames.FilterIrrelevantDependencies, syntacticNgram());
+        addStep(ClassNames.GetRelevantDependencies, ClassNames.FilterIrrelevantDependencies);
+        addStep(ClassNames.CreateTrainingVectors, ClassNames.FilterIrrelevantDependencies, hypernym(), ClassNames.GetRelevantDependencies);
+    }
 
-        IO_MAP.put(ClassNames.WordCount, new InputOutput(new String[]{argumentInput[0]},
-                outputPrefix + ClassNames.WordCount.name() + "Output"));
-        IO_MAP.put(ClassNames.Nr, new InputOutput(new String[]{get(ClassNames.WordCount).output + inputSuffix},
-                outputPrefix + ClassNames.Nr.name() + "Output"));
-        IO_MAP.put(ClassNames.Tr, new InputOutput(new String[]{get(ClassNames.WordCount).output + inputSuffix},
-                outputPrefix + ClassNames.Tr.name() + "Output"));
-        IO_MAP.put(ClassNames.WordCountJoinNr, new InputOutput(new String[]{get(ClassNames.Nr).output + inputSuffix, get(ClassNames.WordCount).output + inputSuffix},
-                outputPrefix + ClassNames.WordCountJoinNr.name() + "Output"));
-        IO_MAP.put(ClassNames.WordCountJoinNrStep2, new InputOutput(new String[]{get(ClassNames.WordCountJoinNr).output + inputSuffix},
-                outputPrefix + ClassNames.WordCountJoinNrStep2.name() + "Output"));
-        IO_MAP.put(ClassNames.WordCountDenominatorJoinTr, new InputOutput(new String[]{get(ClassNames.Tr).output + inputSuffix, get(ClassNames.WordCountJoinNrStep2).output + inputSuffix},
-                outputPrefix + ClassNames.WordCountDenominatorJoinTr.name() + "Output"));
-        IO_MAP.put(ClassNames.WordCountDenominatorJoinTrStep2, new InputOutput(new String[]{get(ClassNames.WordCountDenominatorJoinTr).output + inputSuffix},
-                outputPrefix + ClassNames.WordCountDenominatorJoinTrStep2.name() + "Output"));
-        IO_MAP.put(ClassNames.Sort, new InputOutput(new String[]{get(ClassNames.WordCountDenominatorJoinTrStep2).output + inputSuffix},
-                argumentInput[1]));
+    private void addStep(ClassNames stepName, Object... inputs){
+        addStep(stepName, "" , outputPrefix, stepName.name() + "Output", (String[]) Arrays.stream(inputs).map(input -> {
+            if(input instanceof ClassNames)
+                return get((ClassNames) input).output + inputSuffix;
+            else return (String) input;
+        }).toArray());
+    }
+
+    //FIXME? can create a bug in a later version, when there is a need to specify the output.
+    @Deprecated
+    private void addStep(ClassNames stepName, String output, ClassNames prevStep, ClassNames... prevSteps){
+        String[] inputs = new String[prevSteps.length + 1];
+        inputs[0] = get(prevStep).output;
+        for(int i = 0; i < prevSteps.length; i++){
+            inputs[i+1] = get(prevSteps[i]).output;
+        }
+        addStep(stepName, inputSuffix, "", output, inputs);
+    }
+
+    private void addStep(ClassNames stepName, String inputSuffix, String outputPrefix, String output, String... inputs){
+        IO_MAP.put(stepName, new InputOutput((String[]) Arrays.stream(inputs).map(in -> in + inputSuffix).toArray(), outputPrefix + output));
     }
 
     public static InputOutput get(ClassNames name) {
         return IO_MAP.get(name);
+    }
+
+    public static String syntacticNgram(){
+        return argumentInput.getSyntacticNgramPath();
+    }
+
+    public static String hypernym(){
+        return argumentInput.getHypernymPath();
+    }
+
+    public static String DP_MIN(){
+        return argumentInput.getDpMinPath();
+    }
+
+    public static String finalOutput(){
+        return argumentInput.getOutputPath();
     }
 
 
