@@ -62,39 +62,49 @@ public class CreateTrainingVectors {
 
 
         @Override
-        public void map(Text firstWord, Text SecondWordAndLabel, Context context) throws IOException, InterruptedException {
-            context.write(firstWord, new Text("table2" + "\t" + SecondWordAndLabel));//fixme - check if the key should include both words or only the first one.
+        public void map(Text firstWord, Text secondWordAndLabel, Context context) throws IOException, InterruptedException {
+            String[] parts = secondWordAndLabel.toString().split("\t");
+            String secondWord = parts[0];
+            String label = parts[1];
+            context.write(new Text(firstWord + " " + secondWord), new Text("table2" + "\t" + label)); //fixed. now the key is the noun pair
         }
     }
 
     public static class ReducerClass extends Reducer<Text, Text, Text, Text> {
+        private int NUMBER_OF_RELEVANT_DEPENDENCIES_PATHS = -1;
+        private int[] vector = null;
 
         @Override
         public void reduce(Text noun_pair, Iterable<Text> values, Context context) throws IOException, InterruptedException {
             String label = null;
-            int NUMBER_OF_RELEVANT_DEPENDENCIES_PATHS = 0;
-            for (Text value : values) {
-                String[] tableAndValue = value.toString().split("\t");
-                if (tableAndValue[0].equals("table2")) {
-                    label = tableAndValue[1];
-                } else
-                    NUMBER_OF_RELEVANT_DEPENDENCIES_PATHS = Integer.parseInt(tableAndValue[3]);
+            NUMBER_OF_RELEVANT_DEPENDENCIES_PATHS = -1;
+            vector = null;
 
-            }
-            if (label == null) return;
-            int[] vector = new int[NUMBER_OF_RELEVANT_DEPENDENCIES_PATHS];
             for (Text value : values) {
                 String[] tableAndValue = value.toString().split("\t");
-                if (tableAndValue[0].equals("table1")) {
-                    int index = Integer.parseInt(tableAndValue[1]);
-                    int count = Integer.parseInt(tableAndValue[2]);
-                    vector[index] += count;
-                }
+                if (tableAndValue[0].equals("table2"))
+                    label = tableAndValue[1];
+                else updateVector(tableAndValue);
             }
-            context.write(noun_pair, new Text(convertVectorToText(vector) + "\t" + label));
+
+            if (label == null || NUMBER_OF_RELEVANT_DEPENDENCIES_PATHS == -1)
+                return;
+            context.write(noun_pair, new Text(convertVectorToText() + "\t" + label));
         }
 
-        private Text convertVectorToText(int[] vector) {
+        private void updateVector(String[] tableAndValue){
+            assert tableAndValue[0].equals("table1");
+            if (NUMBER_OF_RELEVANT_DEPENDENCIES_PATHS == -1){
+                NUMBER_OF_RELEVANT_DEPENDENCIES_PATHS = Integer.parseInt(tableAndValue[3]);
+                vector = new int[NUMBER_OF_RELEVANT_DEPENDENCIES_PATHS];
+            }
+
+            int index = Integer.parseInt(tableAndValue[1]);
+            int count = Integer.parseInt(tableAndValue[2]);
+            vector[index] += count;
+        }
+
+        private Text convertVectorToText() {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < vector.length; i++) {
                 sb.append(vector[i]);
