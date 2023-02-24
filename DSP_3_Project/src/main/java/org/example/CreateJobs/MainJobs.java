@@ -1,4 +1,4 @@
-package org.example;
+package org.example.CreateJobs;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Job;
@@ -9,13 +9,14 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class MainJobs {
-    private final static double N = 11076496651.0;
 
 
-    //args[] = {inputInS3, outputInS3, eng-stop-words}
     @SuppressWarnings("all")
     public static void main(String[] args) throws IOException, URISyntaxException, InterruptedException, ClassNotFoundException {
+        if(args.length != 4)
+            throw new IllegalArgumentException("args[] = {syntactic n-gram, hypernym, DP_MIN, output path})");
         InputOutputNames.init(args);
+
         Job wordCountJob = wordCountJob();
         if (!wordCountJob.waitForCompletion(true)) {
             System.exit(1);

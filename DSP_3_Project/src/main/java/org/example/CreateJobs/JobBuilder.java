@@ -1,4 +1,4 @@
-package org.example;
+package org.example.CreateJobs;
 
 
 import org.apache.hadoop.conf.Configuration;
@@ -133,46 +133,6 @@ public class JobBuilder {
         return this;
     }
 
-    /*public static void mergeOutput(String pathToMerge, String newPath) throws IOException {
-
-        FileSystem fs = FileSystem.get(configuration);
-
-        // Input path for the getMerge function
-        Path inputPath = new Path(pathToMerge);
-
-        // Output path for the merged file
-        Path outputPath = new Path(newPath);
-
-        FileUtil.copy(fs, inputPath, fs, outputPath, true, configuration);
-    }*/
-    public static void mergeOutput(String srcDir, String dstFile) throws IOException {
-        //FileSystem fs = S3AFileSystem.get(configuration);
-        //FileUtil.copy(fs, new Path(srcDir), fs, new Path(dstFile), true, configuration);
-        //FileSystem fs = FileSystem.get(configuration);
-        /*FileSystem fs = S3AFileSystem.get(configuration);
-        if (fs == null) throw new IOException("null");
-        Path srcPath = new Path(srcDir);
-        Path dstPath = new Path(dstFile);
-
-        FileStatus[] fileStatuses = fs.listStatus(srcPath);
-        List<FileStatus> fileStatusList = Arrays.asList(fileStatuses);
-
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fs.create(dstPath)));
-
-        for (FileStatus fileStatus : fileStatusList) {
-            Path path = fileStatus.getPath();
-            BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(path)));
-            String line;
-            while ((line = br.readLine()) != null) {
-                bw.write(line);
-                bw.newLine();
-            }
-            br.close();
-        }
-
-        bw.close();*/
-
-    }
 
     public JobBuilder numberOfReducers(int numberOfReducers) {
         job.setNumReduceTasks(numberOfReducers);

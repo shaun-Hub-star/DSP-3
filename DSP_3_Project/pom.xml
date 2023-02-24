@@ -27,6 +27,17 @@
             <version>3.3.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+            <version>2.18.16</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/aws-sdk-java -->
+       <!-- <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>ec2</artifactId>
+            <version>2.18.24</version>
+        </dependency>-->
 
         <dependency>
             <groupId>com.amazonaws</groupId>
@@ -40,6 +51,12 @@
             <version>1.11.853</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/nz.ac.waikato.cms.weka/weka-stable -->
+        <dependency>
+            <groupId>nz.ac.waikato.cms.weka</groupId>
+            <artifactId>weka-stable</artifactId>
+            <version>3.8.5</version>
+        </dependency>
 
 
 

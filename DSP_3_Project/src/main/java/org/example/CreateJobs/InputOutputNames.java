@@ -1,24 +1,18 @@
-package org.example;
+package org.example.CreateJobs;
 
 
 import java.util.HashMap;
 
 enum ClassNames {
-    WordCount,
-    Nr,
-    Tr,
-    WordCountJoinNr,
-    WordCountJoinNrStep2,
-    WordCountDenominatorJoinTr,
-    WordCountDenominatorJoinTrStep2,
-    Sort
-
+    FilterIrrelevantDependencies,
+    GetRelevantDependencies, //without the pair of nouns
+    CreateTrainingVectors
 }
 
 public class InputOutputNames {
 
 
-    public class InputOutput {
+    public static class InputOutput {
         public final String[] inputs;
         public final String output;
 
@@ -31,14 +25,18 @@ public class InputOutputNames {
     //fields
     private static String[] argumentInput;
     private static final HashMap<ClassNames, InputOutput> IO_MAP = new HashMap<>();
-    public static String stopWords;
-    public static String outputName = "part-r-00000";
+    //public static String outputName = "part-r-00000";
 
     //constructor
     private InputOutputNames(String[] args) {
-        assert args.length == 3;
+        /*args:
+        * 0: syntactic n-gram
+        * 1: hypernym
+        * 2: DP_MIN
+        * 3: output path
+        */
+
         argumentInput = args;
-        stopWords = args[2];
         initializeInputOutput();
     }
 
@@ -63,7 +61,7 @@ public class InputOutputNames {
         IO_MAP.put(ClassNames.WordCountDenominatorJoinTr, new InputOutput(new String[]{get(ClassNames.Tr).output + inputSuffix, get(ClassNames.WordCountJoinNrStep2).output + inputSuffix},
                 outputPrefix + ClassNames.WordCountDenominatorJoinTr.name() + "Output"));
         IO_MAP.put(ClassNames.WordCountDenominatorJoinTrStep2, new InputOutput(new String[]{get(ClassNames.WordCountDenominatorJoinTr).output + inputSuffix},
-                outputPrefix + ClassNames.WordCountDenominatorJoinTrStep2.name()  + "Output"));
+                outputPrefix + ClassNames.WordCountDenominatorJoinTrStep2.name() + "Output"));
         IO_MAP.put(ClassNames.Sort, new InputOutput(new String[]{get(ClassNames.WordCountDenominatorJoinTrStep2).output + inputSuffix},
                 argumentInput[1]));
     }
