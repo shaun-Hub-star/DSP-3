@@ -43,7 +43,7 @@ public class CalculateClassifier {
 
 
         for (String trainingDataVector : trainingDataVectors) {
-            String[] trainingDataVectorParts = trainingDataVector.split("\\t");
+            String[] trainingDataVectorParts = trainingDataVector.split("\t");
             this.noun_pair = trainingDataVectorParts[0];
             String vector = trainingDataVectorParts[1];
             String stringLabel = trainingDataVectorParts[2];
@@ -103,7 +103,7 @@ public class CalculateClassifier {
     private List<String[]> convertVectorsToList(String[] trainingDataVectors) throws IOException {
         List<String[]> csvLines = new ArrayList<>();
         for (String trainingDataVector : trainingDataVectors) {
-            String[] trainingDataVectorParts = trainingDataVector.split("\\t");
+            String[] trainingDataVectorParts = trainingDataVector.split("\t");
             this.noun_pair = trainingDataVectorParts[0];
             String[] trainingVector = trainingDataVectorParts[1].split(",");
             String stringLabel = trainingDataVectorParts[2];

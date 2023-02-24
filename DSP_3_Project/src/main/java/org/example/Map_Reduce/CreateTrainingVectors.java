@@ -3,21 +3,21 @@ package org.example.Map_Reduce;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.FileInputFormat;
 import org.apache.hadoop.mapred.FileSplit;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Partitioner;
 import org.apache.hadoop.mapreduce.Reducer;
+import org.example.AWS_Services.S3Instance;
+import org.example.CreateJobs.ClassNames;
+import org.example.CreateJobs.InputOutputNames;
+import software.amazon.awssdk.regions.Region;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.FileSystem;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class CreateTrainingVectors {
     public static class MapperClassFilterIrrelevantDependenciesOutput extends Mapper<Text, Text, Text, Text> {
@@ -29,18 +29,16 @@ public class CreateTrainingVectors {
             super.setup(context);
             int count = 0;
             //load GetRelevantDependencies.txt and init
-            Configuration conf = context.getConfiguration();
-            FileSystem fs = FileSystem.get(conf);
-            FileSplit fileSplit = (FileSplit) context.getInputSplit();
-            Path filePath = fileSplit.getPath();
-            FSDataInputStream inputStream = fs.open(filePath);
-            reader = new BufferedReader(new InputStreamReader(inputStream));
+            S3Instance s3 = new S3Instance(Region.US_EAST_1, "hadoop");
+            String allDependencies = s3.downloadFileContentFromS3(
+                    InputOutputNames.get(ClassNames.GetRelevantDependencies).output + "/part-r-00000",
+                    "txt",
+                    "src/main/java/org/example/Map_Reduce/Outputs");
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                dependencyPathIndex.put(line, count++);
+            String[] dependencies = allDependencies.split("\n");
+            for (String dependency : dependencies) {
+                dependencyPathIndex.put(dependency, count++);
             }
-
         }
 
         @Override
@@ -92,9 +90,9 @@ public class CreateTrainingVectors {
             context.write(noun_pair, new Text(convertVectorToText() + "\t" + label));
         }
 
-        private void updateVector(String[] tableAndValue){
+        private void updateVector(String[] tableAndValue) {
             assert tableAndValue[0].equals("table1");
-            if (NUMBER_OF_RELEVANT_DEPENDENCIES_PATHS == -1){
+            if (NUMBER_OF_RELEVANT_DEPENDENCIES_PATHS == -1) {
                 NUMBER_OF_RELEVANT_DEPENDENCIES_PATHS = Integer.parseInt(tableAndValue[3]);
                 vector = new int[NUMBER_OF_RELEVANT_DEPENDENCIES_PATHS];
             }

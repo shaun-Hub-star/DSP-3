@@ -46,7 +46,7 @@ public class MainJobs {
                 .reducerClass(FilterIrrelevantDependencies.ReducerClass.class)
                 .inputPath(InputOutputNames.get(ClassNames.FilterIrrelevantDependencies).inputs[0])
                 .outputPath(InputOutputNames.get(ClassNames.FilterIrrelevantDependencies).output)
-                //.numberOfReducers(5)
+                //.numberOfReducers(1)
                 .inputFormatClass(SequenceFileInputFormat.class)//FIXME: for debugging
                 .build();
     }
@@ -61,7 +61,7 @@ public class MainJobs {
                 .reducerClass(GetRelevantDependencies.ReducerClass.class)
                 .inputPath(InputOutputNames.get(ClassNames.GetRelevantDependencies).inputs[0])
                 .outputPath(InputOutputNames.get(ClassNames.GetRelevantDependencies).output)
-                //.numberOfReducers(5)
+                .numberOfReducers(1)
                 .inputFormatClass(SequenceFileInputFormat.class)//FIXME: for debugging
                 .build();
     }

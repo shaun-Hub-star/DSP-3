@@ -20,13 +20,15 @@ public class FilterIrrelevantDependencies {
         }
 
         @Override
-        //FIXME? check key here
         public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             Graph g = new Graph(value.toString());
-            for(String path : g.getFullDependencyPathFromNounToNoun()){
-                String start = path.split(" ")[0];
-                String end = path.split(" ")[path.split(" ").length - 1];
-                String pathWithoutStringAndEnd = path.substring(start.length() + 1, path.length() - end.length() - 1);
+            for (String path : g.getFullDependencyPathFromNounToNoun()) {
+                String[] splitBySpace = path.split(" ");
+                String start = splitBySpace[0] + splitBySpace[1];
+                int trimStartIndex = start.length() + 2;
+                String end = splitBySpace[splitBySpace.length - 1] + splitBySpace[splitBySpace.length - 2];
+                int trimEndIndex = path.length() - end.length() - 2;
+                String pathWithoutStringAndEnd = path.substring(trimStartIndex, trimEndIndex);
                 context.write(new Text(pathWithoutStringAndEnd), new Text(start + " " + end + "\t" + g.getCount()));
             }
         }
@@ -36,20 +38,19 @@ public class FilterIrrelevantDependencies {
         @Override
         public void reduce(Text dependencyPath, Iterable<Text> values, Context context) throws IOException, InterruptedException {
             HashMap<String, Integer> uniquePairsCount = new HashMap<>();
-            for(Text pairAndCont : values){
+            for (Text pairAndCont : values) {
                 String[] parts = pairAndCont.toString().split("\t");
                 String pair = parts[0];
                 int count = Integer.parseInt(parts[1]);
                 uniquePairsCount.put(pair, uniquePairsCount.getOrDefault(pair, 0) + count);
-
             }
 
-            if(uniquePairsCount.keySet().size() < 5)
+            if (uniquePairsCount.keySet().size() < 5)
                 //irrelevant
                 return;
 
             //emit <w1>\s<w2>, <dependency path>\t<count>
-            for(String pair : uniquePairsCount.keySet()){
+            for (String pair : uniquePairsCount.keySet()) {
                 context.write(new Text(pair), new Text(dependencyPath.toString() + "\t" + uniquePairsCount.get(pair)));
             }
 
