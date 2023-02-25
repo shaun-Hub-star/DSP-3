@@ -4,12 +4,6 @@ package org.example.CreateJobs;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public enum ClassNames {
-    FilterIrrelevantDependencies,
-    GetRelevantDependencies, //without the pair of nouns
-    CreateTrainingVectors
-}
-
 public class InputOutputNames {
 
 

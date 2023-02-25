@@ -5,20 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/ClassNames.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/TrainingData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/FilterIrrelevantDependencies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/FilterIrrelevantDependencies.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java" afterDir="false" />
-    </list>
-    <list id="fae8faba-d633-4ccf-b7e8-b658263e15cd" name="Changes by ido55" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java" afterDir="false" />
-    </list>
-    <list id="27ed5f99-321a-4e6f-8015-4d7db6de17be" name="Changes by liory" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/InputOutputNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/InputOutputNames.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,37 +26,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java">
-      <ranges>
-        <range start1="5" end1="6" start2="5" end2="5" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="7" end1="8" start2="6" end2="6" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="12" end1="12" start2="10" end2="14" changelist="27ed5f99-321a-4e6f-8015-4d7db6de17be" />
-        <range start1="17" end1="18" start2="19" end2="19" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="19" end1="20" start2="20" end2="20" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="31" end1="37" start2="31" end2="36" changelist="27ed5f99-321a-4e6f-8015-4d7db6de17be" />
-        <range start1="38" end1="41" start2="37" end2="40" changelist="27ed5f99-321a-4e6f-8015-4d7db6de17be" />
-        <range start1="42" end1="43" start2="41" end2="41" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="94" end1="95" start2="92" end2="93" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="96" end1="97" start2="94" end2="95" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="5" end1="5" start2="6" end2="7" changelist="27ed5f99-321a-4e6f-8015-4d7db6de17be" />
-        <range start1="13" end1="13" start2="15" end2="30" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="14" end1="14" start2="31" end2="32" changelist="27ed5f99-321a-4e6f-8015-4d7db6de17be" />
-        <range start1="47" end1="48" start2="65" end2="67" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="59" end1="60" start2="78" end2="79" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="61" end1="63" start2="80" end2="82" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="68" end1="71" start2="87" end2="91" changelist="27ed5f99-321a-4e6f-8015-4d7db6de17be" />
-        <range start1="72" end1="84" start2="92" end2="106" changelist="27ed5f99-321a-4e6f-8015-4d7db6de17be" />
-        <range start1="85" end1="86" start2="107" end2="108" changelist="27ed5f99-321a-4e6f-8015-4d7db6de17be" />
-        <range start1="87" end1="88" start2="109" end2="119" changelist="fae8faba-d633-4ccf-b7e8-b658263e15cd" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -97,7 +58,20 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.CalculateClassifier">
+    <configuration name="CalculateClassifier" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.TrainingModel.CalculateClassifier" />
+      <module name="DSP_3_Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.TrainingModel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Graph" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.DependancyTree.Graph" />
       <module name="DSP_3_Project" />
@@ -113,6 +87,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CalculateClassifier" />
         <item itemvalue="Application.Graph" />
       </list>
     </recent_temporary>

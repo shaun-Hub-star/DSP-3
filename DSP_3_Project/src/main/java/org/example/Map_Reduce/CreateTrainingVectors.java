@@ -1,10 +1,7 @@
 package org.example.Map_Reduce;
 
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FSDataInputStream;
-import org.apache.hadoop.fs.Path;
+
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.FileSplit;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Partitioner;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -12,16 +9,11 @@ import org.example.AWS_Services.S3Instance;
 import org.example.CreateJobs.ClassNames;
 import org.example.CreateJobs.InputOutputNames;
 import software.amazon.awssdk.regions.Region;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.file.FileSystem;
 import java.util.HashMap;
 
 public class CreateTrainingVectors {
     public static class MapperClassFilterIrrelevantDependenciesOutput extends Mapper<Text, Text, Text, Text> {
-        BufferedReader reader;
         HashMap<String /*dependencyPath*/, Integer /*index*/> dependencyPathIndex = new HashMap<>();
 
         @Override
@@ -52,12 +44,10 @@ public class CreateTrainingVectors {
         @Override
         protected void cleanup(Context context) throws IOException, InterruptedException {
             super.cleanup(context);
-            reader.close();
         }
     }
 
     public static class MapperClassHypernym extends Mapper<Text, Text, Text, Text> {
-
 
         @Override
         public void map(Text firstWord, Text secondWordAndLabel, Context context) throws IOException, InterruptedException {
