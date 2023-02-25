@@ -1,18 +1,26 @@
 package org.example.DependancyTree;
 
+import org.tartarus.snowball.ext.PorterStemmer;
+
 import java.util.Objects;
 
 public class Vertex {
     private String word;
     private String partOfSpeech;
+    private final PorterStemmer stemmer;
 
-    public Vertex(String word, String partOfSpeech) {
-        this.word = word;
+    public Vertex(String word, String partOfSpeech, PorterStemmer stemmer) {
+        this.stemmer = stemmer;
+        stemmer.setCurrent(word);
+        stemmer.stem();
+        this.word = stemmer.getCurrent();
         this.partOfSpeech = partOfSpeech;
     }
+
     public String getWord() {
         return word;
     }
+
     public boolean isNoun() {
         return partOfSpeech.startsWith("NN");
     }

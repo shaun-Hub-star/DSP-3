@@ -2,10 +2,10 @@ package org.example.CreateJobs;
 
 public class MainArgs {
 
-    private final String syntacticNgramPath;
-    private final String hypernymPath;
-    private final String DpMinPath;
-    private final String outputPath;
+    private static String syntacticNgramPath;
+    private static String hypernymPath;
+    private static int DpMin = 5; //5 by default
+    private static String outputPath;
 
 
     public MainArgs(String[] args){
@@ -19,25 +19,31 @@ public class MainArgs {
         if(args.length != 4)
             throw new IllegalArgumentException("args[] = {syntactic n-gram, hypernym, DP_MIN, output path})");
 
-        this.syntacticNgramPath = args[0];
-        this.hypernymPath = args[1];
-        this.DpMinPath = args[2];
-        this.outputPath = args[3];
+        syntacticNgramPath = args[0];
+        hypernymPath = args[1];
+        DpMin = Integer.parseInt(args[2]);
+        outputPath = args[3];
     }
 
-    public String getSyntacticNgramPath() {
+    public static String getSyntacticNgramPath() {
         return syntacticNgramPath;
     }
 
-    public String getHypernymPath() {
+    public static String getHypernymPath() {
         return hypernymPath;
     }
 
-    public String getDpMinPath() {
-        return DpMinPath;
+    public static int getDpMin() {
+        return DpMin;
     }
 
-    public String getOutputPath() {
+    public static String getOutputPath() {
         return outputPath;
+    }
+
+    public static String getOutputBucket(){
+        String pref = "s3://";
+        int len = pref.length();
+        return outputPath.substring(len).split("/")[0];
     }
 }

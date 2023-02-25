@@ -5,6 +5,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Partitioner;
 import org.apache.hadoop.mapreduce.Reducer;
+import org.example.CreateJobs.MainArgs;
 import org.example.DependancyTree.Graph;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class FilterIrrelevantDependencies {
 
         @Override
         public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-            Graph g = new Graph(value.toString());
+            Graph g = new Graph(key + "\t" + value);
             for (String path : g.getFullDependencyPathFromNounToNoun()) {
                 String[] splitBySpace = path.split(" ");
                 String start = splitBySpace[0] + splitBySpace[1];
@@ -35,6 +36,7 @@ public class FilterIrrelevantDependencies {
     }
 
     public static class ReducerClass extends Reducer<Text, Text, Text, Text> {
+
         @Override
         public void reduce(Text dependencyPath, Iterable<Text> values, Context context) throws IOException, InterruptedException {
             HashMap<String, Integer> uniquePairsCount = new HashMap<>();
@@ -45,7 +47,7 @@ public class FilterIrrelevantDependencies {
                 uniquePairsCount.put(pair, uniquePairsCount.getOrDefault(pair, 0) + count);
             }
 
-            if (uniquePairsCount.keySet().size() < 5)
+            if (uniquePairsCount.keySet().size() < MainArgs.getDpMin())
                 //irrelevant
                 return;
 

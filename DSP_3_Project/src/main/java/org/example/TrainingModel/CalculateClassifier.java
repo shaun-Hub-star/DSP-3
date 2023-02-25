@@ -4,9 +4,8 @@ import com.opencsv.CSVWriter;
 
 import org.example.AWS_Services.S3Instance;
 import software.amazon.awssdk.regions.Region;
+import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.functions.LinearRegression;
-
-import weka.core.DenseInstance;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ArffSaver;
@@ -20,17 +19,23 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CalculateClassifier {
     private final String trainingDataFileName;
-    private final S3Instance s3Instance;
+    private final S3Instance s3Training;
+    //private final S3Instance s3ModelOutput;
     private LinearRegression classifier;
-    public static HashMap<String, Instance> nounPairToInstanceMap = new HashMap<>();
+    private final HashMap<String, Instance> nounPairToInstanceMap = new HashMap<>();
     private final List<String> nounPairs = new ArrayList<>();
+    private int classIndex;
+    private Evaluation eval;
+
 
     public CalculateClassifier(String bucketOfTrainingDataName, String trainingDataFileName) {
         this.trainingDataFileName = trainingDataFileName;
-        this.s3Instance = new S3Instance(Region.US_EAST_1, bucketOfTrainingDataName);
+        this.s3Training = new S3Instance(Region.US_EAST_1, bucketOfTrainingDataName);
+        //this.s3ModelOutput = new S3Instance(Region.US_EAST_1, "model-output-bucket", true);
     }
 
     /*private String downloadTXTFileIntoString(String fileName) {
@@ -44,14 +49,9 @@ public class CalculateClassifier {
         return content;
     }*/
 
-    public static void main(String[] args) {
-        CalculateClassifier calculateClassifier = new CalculateClassifier("training-data-bucket", "TrainingData.txt");
-        calculateClassifier.trainModelNew();
-    }
-
     public void trainModelNew() {
-        //<noun-pair>\t<vector>\t<label>
-        String trainingData = s3Instance.downloadFileContentFromS3(trainingDataFileName, "txt", "src/main/java/org/example/TrainingModel/TrainingDataFromS3");
+        //<noun-pair>\t<vector>\t<label= {True\False}>
+        String trainingData = s3Training.downloadFileContentFromS3(trainingDataFileName, "txt", "src/main/java/org/example/TrainingModel/TrainingDataFromS3");
         //trainingData = downloadTXTFileIntoString("C:\\Users\\Shust\\OneDrive\\Documents\\First Degree\\Semester 5\\Distributed Systems\\Projects\\Assignment3\\DSP-3\\DSP_3_Project\\src\\main\\java\\org\\example\\TrainingModel\\TrainingData.txt");
         String[] trainingDataVectors = trainingData.split("\\n");
         String csvFilePath = "src/main/java/org/example/TrainingModel/InputFilesForTrainingModel/TrainingDataCSV.csv";
@@ -62,17 +62,115 @@ public class CalculateClassifier {
             convertCSVToArff(csvFilePath, arffFilePath);
             Instances data = ConverterUtils.DataSource.read(arffFilePath);
             initNounPairToInstanceMap(data);
-            data.setClassIndex(data.numAttributes() - 1);
+            classIndex = data.numAttributes() - 1;
+            data.setClassIndex(classIndex);
             this.classifier = new LinearRegression();
-            classifier.buildClassifier(data);
+            //classifier.buildClassifier(data);
 
-            //System.out.println("[DEBUG]: " + classifier);
-            //print Predicted Label
-            System.out.println("[DEBUG]: " + predictedLabel("1,2,3,4,5,6,7,8,9,11"));
+            eval = new Evaluation(data);
+            eval.crossValidateModel(classifier, data, 10, new java.util.Random(42069));
+
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+
+    public void modelStats() {
+        double fMeasure = eval.fMeasure(classIndex);
+        double recall = eval.recall(classIndex);
+        double precision = eval.precision(classIndex);
+
+        List<String> nounPairsTP = new ArrayList<>();
+        List<String> nounPairsFP = new ArrayList<>();
+        List<String> nounPairsTN = new ArrayList<>();
+        List<String> nounPairsFN = new ArrayList<>();
+
+        initNounPairsLists(nounPairsTP, nounPairsFP, nounPairsTN, nounPairsFN);
+        createHTMLFile(fMeasure, recall, precision, nounPairsTP, nounPairsFP, nounPairsTN, nounPairsFN);
+        uploadHTMLFileToS3();
+    }
+
+    private void uploadHTMLFileToS3() {
+        String htmlFilePath = "src/main/java/org/example/TrainingModel/HTMLOutput/ModelStats.html";
+
+        this.s3Training.uploadFile("ModelStats.html", htmlFilePath);
+
+    }
+
+    private void initNounPairsLists(List<String> nounPairsTP, List<String> nounPairsFP, List<String> nounPairsTN, List<String> nounPairsFN) {
+        for (Map.Entry<String, Instance> nounVector : this.nounPairToInstanceMap.entrySet()) {
+            if (nounPairsTP.size() == 5 && nounPairsFP.size() == 5 && nounPairsTN.size() == 5 && nounPairsFN.size() == 5) {
+                break;
+            }
+            String nounPair = nounVector.getKey();
+            String actual = nounVector.getValue().toString(classIndex);
+            try {
+                double predicted = this.predictedLabel(nounPair);
+                if (nounPairsTP.size() < 5 && actual.equals("1.0") && predicted == 1.0) {
+                    nounPairsTP.add(nounPair);
+                } else if (nounPairsFN.size() < 5 && actual.equals("1.0") && predicted == 0.0) {
+                    nounPairsFN.add(nounPair);
+                } else if (nounPairsFP.size() < 5 && actual.equals("0.0") && predicted == 1.0) {
+                    nounPairsFP.add(nounPair);
+                } else if (nounPairsTN.size() < 5 && actual.equals("0.0") && predicted == 0.0) {
+                    nounPairsTN.add(nounPair);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private void createHTMLFile(double fMeasure, double recall, double precision, List<String> nounPairsTP, List<String> nounPairsFP, List<String> nounPairsTN, List<String> nounPairsFN) {
+        String htmlFilePath = "src/main/java/org/example/TrainingModel/HTMLOutput/ModelStats.html";
+        try {
+            FileWriter fileWriter = new FileWriter(htmlFilePath);
+            fileWriter.write("<html>\n" +
+                    "<head>\n" +
+                    "    <title>Model Stats</title>\n" +
+                    "</head>\n" +
+                    "<body>\n" +
+                    "    <h1>Model Stats</h1>\n" +
+                    "    <h2>True Positives</h2>\n" +
+                    "    <ul>\n");
+            for (String nounPair : nounPairsTP) {
+                fileWriter.write("        <li>" + nounPair + "</li>\n");
+            }
+            fileWriter.write("    </ul>\n" +
+                    "    <h2>False Positives</h2>\n" +
+                    "    <ul>\n");
+            for (String nounPair : nounPairsFP) {
+                fileWriter.write("        <li>" + nounPair + "</li>\n");
+            }
+            fileWriter.write("    </ul>\n" +
+                    "    <h2>True Negatives</h2>\n" +
+                    "    <ul>\n");
+            for (String nounPair : nounPairsTN) {
+                fileWriter.write("        <li>" + nounPair + "</li>\n");
+            }
+            fileWriter.write("    </ul>\n" +
+                    "    <h2>False Negatives</h2>\n" +
+                    "    <ul>\n");
+            for (String nounPair : nounPairsFN) {
+                fileWriter.write("        <li>" + nounPair + "</li>\n");
+            }
+            fileWriter.write("    </ul>\n" +
+                    "    <h2>Model Stats</h2>\n" +
+                    "    <ul>\n" +
+                    "        <li>F-Measure: " + fMeasure + "</li>\n" +
+                    "        <li>Recall: " + recall + "</li>\n" +
+                    "        <li>Precision: " + precision + "</li>\n" +
+                    "    </ul>\n" +
+                    "</body>\n" +
+                    "</html>");
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void initNounPairToInstanceMap(Instances trainingDataVectors) {
         for (int i = 0; i < trainingDataVectors.numInstances(); i++) {
@@ -82,24 +180,8 @@ public class CalculateClassifier {
         }
     }
 
-    private Instance convertVectorInputToInstance(String vector, double label) {
-        String[] trainingDataVectorValues = vector.split(",");
-        int number_of_rows = trainingDataVectorValues.length;
-        double[] trainingDataVectorValuesDouble = new double[number_of_rows];
-        for (int i = 0; i < number_of_rows; i++) {
-            trainingDataVectorValuesDouble[i] = Double.parseDouble(trainingDataVectorValues[i]);
-        }
-        Instance instance = new DenseInstance(number_of_rows + 1);
-        for (int j = 0; j < number_of_rows; j++) {
-            instance.setValue(j, trainingDataVectorValuesDouble[j]);
-        }
-        if (label == 1.0 || label == 0.0)
-            instance.setValue(number_of_rows, label);
-        return instance;
-    }
-
-    public double predictedLabel(String vector) throws Exception {
-        Instance instance = convertVectorInputToInstance(vector, -999);
+    public double predictedLabel(String nounPair) throws Exception {
+        Instance instance = nounPairToInstanceMap.get(nounPair);
         return classifier.classifyInstance(instance);
     }
 
@@ -114,7 +196,7 @@ public class CalculateClassifier {
             firstLine = createAttributes(csvLines, firstLine, trainingVector);
             String stringLabel = trainingDataVectorParts[2];
             stringLabel = stringLabel.replace("\r", "");
-            String label = stringLabel.equals("True") ? "1" : "0";
+            String label = stringLabel.equals("True") ? "1.0" : "0.0";
             //concat the label to the end of the vector
             trainingVector = java.util.Arrays.copyOf(trainingVector, trainingVector.length + 1);
             trainingVector[trainingVector.length - 1] = label;
@@ -158,12 +240,4 @@ public class CalculateClassifier {
 
     }
 
-
-/*    private void writeToTxtFile(String fileName) throws IOException {
-        FileWriter fileWriter = new FileWriter(fileName);
-        for(int line = 0; line < 100; line++) {
-            fileWriter.write(content);
-        }
-        fileWriter.close();
-    }*/
 }

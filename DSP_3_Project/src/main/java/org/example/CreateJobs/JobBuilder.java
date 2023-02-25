@@ -123,8 +123,8 @@ public class JobBuilder {
         return this;
     }
 
-    public JobBuilder setVariable(double N) {
-        configuration.setDouble("N", N);
+    public JobBuilder setVariable(double var) {
+        configuration.setDouble("var", var);
         return this;
     }
 

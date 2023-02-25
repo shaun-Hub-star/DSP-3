@@ -2,6 +2,7 @@ package org.example.DependancyTree;
 
 import kotlin.Pair;
 import org.apache.hadoop.io.Text;
+import org.tartarus.snowball.ext.PorterStemmer;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,10 +13,12 @@ public class Graph {
     private HashMap<Pair<Vertex, Vertex>, String> weight = new HashMap<>();
     private String headVertexName;
     private String count;
+    private final PorterStemmer stemmer;
 
     public static void main(String[] args) {
-        String syntacticNgram = "chair\tchair/NN/ROOT/0 is/IN/compl/1 furniture/NN/ccomp/2 wood/NN/acomp/1\t1864";
+        String syntacticNgram = "chairs\tchairs/NN/ROOT/0 is/IN/compl/1 furniture's/NN/ccomp/2 wooden/NN/acomp/1\t1864";
         Graph g = new Graph(syntacticNgram);
+        System.out.println(g.getFullDependencyPathFromNounToNoun());
         /*for (String path : g.getFullDependencyPathFromNounToNoun()) {
             String[] splitBySpace = path.split(" ");
             String start = splitBySpace[0] + splitBySpace[1];
@@ -29,6 +32,7 @@ public class Graph {
     }
 
     public Graph(String syntacticNgram) {
+        this.stemmer = new PorterStemmer();
         //split by tab
         String[] parts = syntacticNgram.split("\\t");
         headVertexName = parts[0];
@@ -38,7 +42,7 @@ public class Graph {
         for (String node : nodes) {
             String[] nodeAttributes = node.split("/");
             //vertices
-            Vertex to = new Vertex(nodeAttributes[0], nodeAttributes[1]);
+            Vertex to = new Vertex(nodeAttributes[0], nodeAttributes[1], stemmer);
             vertices.add(to);
 
             //edges
@@ -65,7 +69,7 @@ public class Graph {
         int fromIndex = Integer.parseInt(nodeAttributes[3]) - 1;
         if (fromIndex == -1) return to;
         String[] fromNodeAttributes = nodes[fromIndex].split("/");
-        Vertex from = new Vertex(fromNodeAttributes[0], fromNodeAttributes[1]);
+        Vertex from = new Vertex(fromNodeAttributes[0], fromNodeAttributes[1], stemmer);
         if (!edges.containsKey(from))
             edges.put(from, new LinkedList<>());
 

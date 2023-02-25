@@ -10,7 +10,6 @@ import java.io.IOException;
 public class GetRelevantDependencies {
     public static class MapperClass extends Mapper<Text, Text, Text, Text> {
 
-
         @Override
         protected void setup(Context context) throws IOException, InterruptedException {
 

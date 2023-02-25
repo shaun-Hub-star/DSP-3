@@ -6,6 +6,7 @@ import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
 import org.example.Map_Reduce.CreateTrainingVectors;
 import org.example.Map_Reduce.FilterIrrelevantDependencies;
 import org.example.Map_Reduce.GetRelevantDependencies;
+import org.example.TrainingModel.CalculateClassifier;
 
 import java.io.IOException;
 import java.net.URI;
@@ -16,8 +17,8 @@ public class MainJobs {
 
     @SuppressWarnings("all")
     public static void main(String[] args) throws IOException, URISyntaxException, InterruptedException, ClassNotFoundException {
-        InputOutputNames.init(new MainArgs(args));
-        Job filterIrrelevantDependenciesJob = filterIrrelevantDependenciesJob();
+        InputOutputNames.init();
+        Job filterIrrelevantDependenciesJob = filterIrrelevantDependenciesJob(MainArgs.getDpMin());
         if(!filterIrrelevantDependenciesJob.waitForCompletion(true))
             System.exit(1);
 
@@ -29,14 +30,16 @@ public class MainJobs {
         if(!createTrainingVecotorsJob.waitForCompletion(true))
             System.exit(1);
 
-        return;
+        String trainingVectorsPath = MainArgs.getOutputPath().substring("s3://".length());
+        CalculateClassifier calculateClassifier = new CalculateClassifier(MainArgs.getOutputBucket(), trainingVectorsPath);
+        calculateClassifier.trainModelNew();
+        calculateClassifier.modelStats();
 
         /*JobBuilder.mergeOutput(InputOutputNames.get(ClassNames.WordCount).output,
             InputOutputNames.get(ClassNames.WordCount).output + "/" + InputOutputNames.outputName);*/
 
     }
-
-    private static Job filterIrrelevantDependenciesJob() throws IOException{
+    private static Job filterIrrelevantDependenciesJob(int DP_MIN) throws IOException{
         return JobBuilder.builder()
                 .jarByClass(FilterIrrelevantDependencies.class)
                 .jobName("filter irrelevant dependencies")
@@ -47,7 +50,8 @@ public class MainJobs {
                 .inputPath(InputOutputNames.get(ClassNames.FilterIrrelevantDependencies).inputs[0])
                 .outputPath(InputOutputNames.get(ClassNames.FilterIrrelevantDependencies).output)
                 //.numberOfReducers(1)
-                .inputFormatClass(SequenceFileInputFormat.class)//FIXME: for debugging
+                .setVariable(DP_MIN)
+                //.inputFormatClass(SequenceFileInputFormat.class)//FIXME: for debugging
                 .build();
     }
 
@@ -62,7 +66,7 @@ public class MainJobs {
                 .inputPath(InputOutputNames.get(ClassNames.GetRelevantDependencies).inputs[0])
                 .outputPath(InputOutputNames.get(ClassNames.GetRelevantDependencies).output)
                 .numberOfReducers(1)
-                .inputFormatClass(SequenceFileInputFormat.class)//FIXME: for debugging
+                //.inputFormatClass(SequenceFileInputFormat.class)//FIXME: for debugging
                 .build();
     }
 
@@ -77,7 +81,7 @@ public class MainJobs {
                 .addInputPath(inputs[1], CreateTrainingVectors.MapperClassHypernym.class)
                 .outputPath(InputOutputNames.get(ClassNames.CreateTrainingVectors).output)
                 .cacheFile(new URI(InputOutputNames.get(ClassNames.GetRelevantDependencies).output))
-                //.numberOfReducers(1)
+                .numberOfReducers(1)
                 .build();
     }
 

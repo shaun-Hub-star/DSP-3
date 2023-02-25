@@ -8,6 +8,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.example.AWS_Services.S3Instance;
 import org.example.CreateJobs.ClassNames;
 import org.example.CreateJobs.InputOutputNames;
+import org.example.CreateJobs.MainArgs;
 import software.amazon.awssdk.regions.Region;
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,7 +22,7 @@ public class CreateTrainingVectors {
             super.setup(context);
             int count = 0;
             //load GetRelevantDependencies.txt and init
-            S3Instance s3 = new S3Instance(Region.US_EAST_1, "hadoop");
+            S3Instance s3 = new S3Instance(Region.US_EAST_1, MainArgs.getOutputBucket()); //fixme: change to your bucket name
             String allDependencies = s3.downloadFileContentFromS3(
                     InputOutputNames.get(ClassNames.GetRelevantDependencies).output + "/part-r-00000",
                     "txt",

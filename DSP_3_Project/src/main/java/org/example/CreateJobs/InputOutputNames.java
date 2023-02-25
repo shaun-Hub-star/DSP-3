@@ -18,7 +18,6 @@ public class InputOutputNames {
     }
 
     //fields
-    private static MainArgs argumentInput;
     private static final HashMap<ClassNames, InputOutput> IO_MAP = new HashMap<>();
     //public static String outputName = "part-r-00000";
 
@@ -26,64 +25,44 @@ public class InputOutputNames {
     private final String outputPrefix;
 
     //constructor
-    private InputOutputNames(MainArgs args) {
-        argumentInput = args;
-        outputPrefix = finalOutput().substring(0, finalOutput().lastIndexOf("/")+1);
+    private InputOutputNames() {
+        outputPrefix = MainArgs.getOutputPath().substring(0, MainArgs.getOutputPath().lastIndexOf("/")+1);
         initializeInputOutput();
     }
 
-    public static void init(MainArgs argumentInput) {
-        new InputOutputNames(argumentInput);
+    public static void init() {
+        new InputOutputNames();
     }
 
     private void initializeInputOutput() {
-        addStep(ClassNames.FilterIrrelevantDependencies, syntacticNgram());
+        addStep(ClassNames.FilterIrrelevantDependencies, MainArgs.getSyntacticNgramPath());
         addStep(ClassNames.GetRelevantDependencies, ClassNames.FilterIrrelevantDependencies);
-        addStep(ClassNames.CreateTrainingVectors, ClassNames.FilterIrrelevantDependencies, hypernym(), ClassNames.GetRelevantDependencies);
+        addStep(MainArgs.getOutputPath(), ClassNames.CreateTrainingVectors, ClassNames.FilterIrrelevantDependencies, MainArgs.getHypernymPath(), ClassNames.GetRelevantDependencies);
+    }
+    /*
+    * main(String[]args):
+    *   output_dir = args[2]
+    *   map_reduce1(input_dir, output_dir + "/filterIrrelevantDependencies")
+    *   map_reduce2(output_dir + "/filterIrrelevantDependencies", output_dir + "/getRelevantDependencies")
+    *   map_reduce3(output_dir + "/getRelevantDependencies", output_dir + "/createTrainingVectors")
+    * */
+    private void addStep(ClassNames stepName, Object... inputs){
+        addStep(outputPrefix + stepName.name() + "Output", stepName, inputs);
     }
 
-    private void addStep(ClassNames stepName, Object... inputs){
-        addStep(stepName, "" , outputPrefix, stepName.name() + "Output", (String[]) Arrays.stream(inputs).map(input -> {
+    private void addStep(String output, ClassNames stepName, Object... inputs){
+        addStep(output, stepName, (String[]) Arrays.stream(inputs).map(input -> {
             if(input instanceof ClassNames)
                 return get((ClassNames) input).output + inputSuffix;
             else return (String) input;
         }).toArray());
     }
 
-    //FIXME? can create a bug in a later version, when there is a need to specify the output.
-    @Deprecated
-    private void addStep(ClassNames stepName, String output, ClassNames prevStep, ClassNames... prevSteps){
-        String[] inputs = new String[prevSteps.length + 1];
-        inputs[0] = get(prevStep).output;
-        for(int i = 0; i < prevSteps.length; i++){
-            inputs[i+1] = get(prevSteps[i]).output;
-        }
-        addStep(stepName, inputSuffix, "", output, inputs);
-    }
-
-    private void addStep(ClassNames stepName, String inputSuffix, String outputPrefix, String output, String... inputs){
-        IO_MAP.put(stepName, new InputOutput((String[]) Arrays.stream(inputs).map(in -> in + inputSuffix).toArray(), outputPrefix + output));
+    private void addStep(String output, ClassNames stepName, String... inputs){
+        IO_MAP.put(stepName, new InputOutput(inputs, output));
     }
 
     public static InputOutput get(ClassNames name) {
         return IO_MAP.get(name);
     }
-
-    public static String syntacticNgram(){
-        return argumentInput.getSyntacticNgramPath();
-    }
-
-    public static String hypernym(){
-        return argumentInput.getHypernymPath();
-    }
-
-    public static String DP_MIN(){
-        return argumentInput.getDpMinPath();
-    }
-
-    public static String finalOutput(){
-        return argumentInput.getOutputPath();
-    }
-
-
 }

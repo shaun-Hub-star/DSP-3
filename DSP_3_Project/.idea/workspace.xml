@@ -1,15 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="DSP_3_Project:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/ClassNames.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/TrainingData.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/DSP_3_Project_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/InputOutputNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/InputOutputNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainArgs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainArgs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Vertex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/FilterIrrelevantDependencies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/FilterIrrelevantDependencies.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/GetRelevantDependencies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/GetRelevantDependencies.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java" afterDir="false" />
+    </list>
+    <list id="6b8f496c-591a-4913-906c-deeaf4e1ac83" name="Changes by liory" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/AWS_Services/S3Instance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/AWS_Services/S3Instance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/InputOutputNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/InputOutputNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/JobBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/JobBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainArgs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainArgs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/FilterIrrelevantDependencies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/FilterIrrelevantDependencies.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +50,78 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java">
+      <ranges>
+        <range start1="10" end1="10" start2="10" end2="11" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="23" end1="24" start2="24" end2="25" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java">
+      <ranges>
+        <range start1="6" end1="6" start2="6" end2="7" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="7" end1="9" start2="8" end2="8" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="22" end1="22" start2="21" end2="22" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="25" end1="26" start2="25" end2="27" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="27" end1="28" start2="28" end2="29" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="29" end1="29" start2="30" end2="33" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="32" end1="33" start2="36" end2="38" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="45" end1="50" start2="50" end2="50" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="52" end1="54" start2="52" end2="54" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="64" end1="65" start2="64" end2="66" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="66" end1="67" start2="67" end2="71" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="68" end1="71" start2="72" end2="73" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="75" end1="75" start2="77" end2="173" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="84" end1="102" start2="182" end2="184" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="116" end1="117" start2="198" end2="199" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="160" end1="168" start2="242" end2="242" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java">
+      <ranges>
+        <range start1="8" end1="8" start2="8" end2="9" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="18" end1="20" start2="19" end2="21" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="31" end1="32" start2="32" end2="36" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="37" end1="39" start2="41" end2="42" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="49" end1="50" start2="52" end2="54" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="64" end1="65" start2="68" end2="69" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="79" end1="80" start2="83" end2="84" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/FilterIrrelevantDependencies.java">
+      <ranges>
+        <range start1="7" end1="7" start2="7" end2="8" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="23" end1="24" start2="24" end2="25" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="37" end1="37" start2="38" end2="39" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="47" end1="48" start2="49" end2="50" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainArgs.java">
+      <ranges>
+        <range start1="4" end1="8" start2="4" end2="8" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="21" end1="25" start2="21" end2="25" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="27" end1="28" start2="27" end2="28" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="31" end1="32" start2="31" end2="32" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="35" end1="37" start2="35" end2="37" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="39" end1="40" start2="39" end2="40" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="42" end1="42" start2="42" end2="48" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/InputOutputNames.java">
+      <ranges>
+        <range start1="20" end1="21" start2="20" end2="20" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="28" end1="31" start2="27" end2="29" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="34" end1="36" start2="32" end2="34" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="39" end1="40" start2="37" end2="38" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="41" end1="42" start2="39" end2="40" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="43" end1="44" start2="41" end2="48" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="45" end1="50" start2="49" end2="50" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="52" end1="61" start2="52" end2="58" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="63" end1="65" start2="60" end2="62" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="70" end1="88" start2="67" end2="67" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -36,29 +131,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Shust/OneDrive/Documents/First Degree/Semester 5/Distributed Systems/Projects/Assignment3/DSP-3/DSP_3_Project&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Shust/OneDrive/Documents/First Degree/Semester 5/Distributed Systems/Projects/Assignment3/DSP-3/DSP_3_Project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CalculateClassifier">
+  <component name="RunManager" selected="Application.Graph">
     <configuration name="CalculateClassifier" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.TrainingModel.CalculateClassifier" />
       <module name="DSP_3_Project" />
@@ -87,8 +182,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CalculateClassifier" />
         <item itemvalue="Application.Graph" />
+        <item itemvalue="Application.CalculateClassifier" />
       </list>
     </recent_temporary>
   </component>
@@ -126,7 +221,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java</url>
-          <line>24</line>
+          <line>27</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>

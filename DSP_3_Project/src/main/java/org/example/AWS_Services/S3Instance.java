@@ -40,6 +40,11 @@ public class S3Instance implements IS3_Methods {
     */
     }
 
+    public S3Instance(Region region, String bucketName, boolean createBucket){
+        this(region, bucketName);
+        if(createBucket) createBucket();
+    }
+
     /**
      * @param key  fileId
      * @param path file path that you want to upload
