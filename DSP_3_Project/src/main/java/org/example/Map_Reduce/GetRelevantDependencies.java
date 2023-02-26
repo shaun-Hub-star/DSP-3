@@ -1,5 +1,6 @@
 package org.example.Map_Reduce;
 
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Partitioner;
@@ -8,7 +9,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 
 public class GetRelevantDependencies {
-    public static class MapperClass extends Mapper<Text, Text, Text, Text> {
+    public static class MapperClass extends Mapper<LongWritable, Text, Text, Text> {
 
         @Override
         protected void setup(Context context) throws IOException, InterruptedException {
@@ -16,8 +17,9 @@ public class GetRelevantDependencies {
         }
 
         @Override
-        public void map(Text noun_pair, Text dependencyPathAndCount, Context context) throws IOException, InterruptedException {
-            context.write(new Text(dependencyPathAndCount.toString().split("\t")[0]), new Text());
+        public void map(LongWritable key, Text value /*<pair>\t<dependency>\t<count>*/, Context context) throws IOException, InterruptedException {
+            String dependencyPath = value.toString().split("\t")[1];
+            context.write(new Text(dependencyPath), new Text());
         }
     }
 

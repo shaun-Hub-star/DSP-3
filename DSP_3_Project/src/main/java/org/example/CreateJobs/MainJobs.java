@@ -3,7 +3,10 @@ package org.example.CreateJobs;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.example.Map_Reduce.CreateTrainingVectors;
+import org.example.Map_Reduce.DEBUG_MAP_REDUCE;
 import org.example.Map_Reduce.FilterIrrelevantDependencies;
 import org.example.Map_Reduce.GetRelevantDependencies;
 import org.example.TrainingModel.CalculateClassifier;
@@ -13,11 +16,19 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class MainJobs {
-
+   // private static final Logger LOG = Logger.getLogger(FilterIrrelevantDependencies.MapperClass.class);
 
     @SuppressWarnings("all")
     public static void main(String[] args) throws IOException, URISyntaxException, InterruptedException, ClassNotFoundException {
+        MainArgs.init(args);
         InputOutputNames.init();
+
+        Job debugJob = troll();
+        if(!debugJob.waitForCompletion(true))
+            System.exit(1);
+
+        //LOG.setLevel(Level.DEBUG);
+        /*
         Job filterIrrelevantDependenciesJob = filterIrrelevantDependenciesJob(MainArgs.getDpMin());
         if(!filterIrrelevantDependenciesJob.waitForCompletion(true))
             System.exit(1);
@@ -38,8 +49,10 @@ public class MainJobs {
         /*JobBuilder.mergeOutput(InputOutputNames.get(ClassNames.WordCount).output,
             InputOutputNames.get(ClassNames.WordCount).output + "/" + InputOutputNames.outputName);*/
 
+
     }
     private static Job filterIrrelevantDependenciesJob(int DP_MIN) throws IOException{
+        System.out.println("Output path: " + InputOutputNames.get(ClassNames.FilterIrrelevantDependencies).output);
         return JobBuilder.builder()
                 .jarByClass(FilterIrrelevantDependencies.class)
                 .jobName("filter irrelevant dependencies")
@@ -82,6 +95,21 @@ public class MainJobs {
                 .outputPath(InputOutputNames.get(ClassNames.CreateTrainingVectors).output)
                 .cacheFile(new URI(InputOutputNames.get(ClassNames.GetRelevantDependencies).output))
                 .numberOfReducers(1)
+                .build();
+    }
+
+    private static Job troll() throws IOException {
+        return JobBuilder.builder()
+                .jarByClass(DEBUG_MAP_REDUCE.class)
+                .jobName("DEBUG_MAP_REDUCE")
+                .mapperClass(DEBUG_MAP_REDUCE.MapperClass.class)
+                .partitionerClass(DEBUG_MAP_REDUCE.PartitionerClass.class)
+                //.combinerClass(GetRelevantDependencies.CombinerClass.class)
+                .reducerClass(DEBUG_MAP_REDUCE.ReducerClass.class)
+                .inputPath(InputOutputNames.get(ClassNames.DEBUG_MAP_REDUCE).inputs[0])
+                .outputPath(InputOutputNames.get(ClassNames.DEBUG_MAP_REDUCE).output)
+                .numberOfReducers(1)
+                //.inputFormatClass(SequenceFileInputFormat.class)//FIXME: for debugging
                 .build();
     }
 

@@ -1,6 +1,7 @@
 package org.example.Map_Reduce;
 
 
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Partitioner;
@@ -14,7 +15,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class CreateTrainingVectors {
-    public static class MapperClassFilterIrrelevantDependenciesOutput extends Mapper<Text, Text, Text, Text> {
+    public static class MapperClassFilterIrrelevantDependenciesOutput extends Mapper<LongWritable, Text, Text, Text> {
         HashMap<String /*dependencyPath*/, Integer /*index*/> dependencyPathIndex = new HashMap<>();
 
         @Override
@@ -30,16 +31,17 @@ public class CreateTrainingVectors {
 
             String[] dependencies = allDependencies.split("\n");
             for (String dependency : dependencies) {
-                dependencyPathIndex.put(dependency, count++);
+                dependencyPathIndex.put(dependency.replace("\t",""), count++);
             }
         }
 
         @Override
-        public void map(Text noun_pair, Text dependencyPathAndCount, Context context) throws IOException, InterruptedException {
-            String[] parts = dependencyPathAndCount.toString().split("\t");
-            String dependencyPath = parts[0];
-            String count = parts[1];
-            context.write(noun_pair, new Text("table1" + "\t" + dependencyPathIndex.get(dependencyPath) + "\t" + count + "\t" + dependencyPathIndex.size()));
+        public void map(LongWritable key, Text value /*<pair>\t<dependency>\t<count>*/, Context context) throws IOException, InterruptedException {
+            String[] parts = value.toString().split("\t");
+            String noun_pair = parts[0];
+            String dependencyPath = parts[1];
+            String count = parts[2];
+            context.write(new Text(noun_pair), new Text("table1" + "\t" + dependencyPathIndex.get(dependencyPath) + "\t" + count + "\t" + dependencyPathIndex.size()));
         }
 
         @Override
@@ -48,14 +50,14 @@ public class CreateTrainingVectors {
         }
     }
 
-    public static class MapperClassHypernym extends Mapper<Text, Text, Text, Text> {
+    public static class MapperClassHypernym extends Mapper<LongWritable, Text, Text, Text> {
 
         @Override
-        public void map(Text firstWord, Text secondWordAndLabel, Context context) throws IOException, InterruptedException {
-            String[] parts = secondWordAndLabel.toString().split("\t");
-            String secondWord = parts[0];
-            String label = parts[1];
-            context.write(new Text(firstWord + " " + secondWord), new Text("table2" + "\t" + label)); //fixed. now the key is the noun pair
+        public void map(LongWritable key, Text value /*<w1>\t<w2>\t<label>*/, Context context) throws IOException, InterruptedException {
+            String[] parts = value.toString().split("\t");
+            String noun_pair = parts[0] + " " + parts[1];
+            String label = parts[2];
+            context.write(new Text(noun_pair), new Text("table2" + "\t" + label));
         }
     }
 

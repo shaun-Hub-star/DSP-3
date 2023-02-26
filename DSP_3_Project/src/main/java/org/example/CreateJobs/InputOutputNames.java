@@ -1,6 +1,8 @@
 package org.example.CreateJobs;
 
 
+import jdk.jfr.internal.tool.Main;
+
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -35,9 +37,12 @@ public class InputOutputNames {
     }
 
     private void initializeInputOutput() {
+
         addStep(ClassNames.FilterIrrelevantDependencies, MainArgs.getSyntacticNgramPath());
         addStep(ClassNames.GetRelevantDependencies, ClassNames.FilterIrrelevantDependencies);
         addStep(MainArgs.getOutputPath(), ClassNames.CreateTrainingVectors, ClassNames.FilterIrrelevantDependencies, MainArgs.getHypernymPath(), ClassNames.GetRelevantDependencies);
+        //DEBUG STEP
+        addStep(ClassNames.DEBUG_MAP_REDUCE, MainArgs.getSyntacticNgramPath());
     }
     /*
     * main(String[]args):
@@ -51,11 +56,14 @@ public class InputOutputNames {
     }
 
     private void addStep(String output, ClassNames stepName, Object... inputs){
-        addStep(output, stepName, (String[]) Arrays.stream(inputs).map(input -> {
-            if(input instanceof ClassNames)
-                return get((ClassNames) input).output + inputSuffix;
-            else return (String) input;
-        }).toArray());
+        String[] strInputs = new String[inputs.length];
+        for(int i = 0; i < inputs.length; i++){
+            if(inputs[i] instanceof ClassNames)
+                strInputs[i] = get((ClassNames) inputs[i]).output + inputSuffix;
+            else
+                strInputs[i] = inputs[i].toString();
+        }
+        addStep(output, stepName, strInputs);
     }
 
     private void addStep(String output, ClassNames stepName, String... inputs){

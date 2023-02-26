@@ -10,30 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/DSP_3_Project_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/DEBUG_MAP_REDUCE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/DSP_3_Project_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/DSP_3_Project_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/DSP_3_Project_jar/DSP_3_Project.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/ClassNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/ClassNames.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/InputOutputNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/InputOutputNames.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainArgs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainArgs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Vertex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/FilterIrrelevantDependencies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/FilterIrrelevantDependencies.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/GetRelevantDependencies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/GetRelevantDependencies.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java" afterDir="false" />
     </list>
-    <list id="6b8f496c-591a-4913-906c-deeaf4e1ac83" name="Changes by liory" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/AWS_Services/S3Instance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/AWS_Services/S3Instance.java" afterDir="false" />
+    <list id="c4510b10-2ea8-4acc-a007-898fbf54e06a" name="Changes by ido55" comment="" />
+    <list id="85979f3d-fd97-43cf-92a5-791a05d7b331" name="Changes by liory" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/InputOutputNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/InputOutputNames.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/JobBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/JobBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainArgs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainArgs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/FilterIrrelevantDependencies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/FilterIrrelevantDependencies.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/GetRelevantDependencies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/GetRelevantDependencies.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,74 +47,34 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java">
-      <ranges>
-        <range start1="10" end1="10" start2="10" end2="11" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="23" end1="24" start2="24" end2="25" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/org/example/TrainingModel/CalculateClassifier.java">
-      <ranges>
-        <range start1="6" end1="6" start2="6" end2="7" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="7" end1="9" start2="8" end2="8" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="22" end1="22" start2="21" end2="22" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="25" end1="26" start2="25" end2="27" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="27" end1="28" start2="28" end2="29" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="29" end1="29" start2="30" end2="33" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="32" end1="33" start2="36" end2="38" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="45" end1="50" start2="50" end2="50" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="52" end1="54" start2="52" end2="54" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="64" end1="65" start2="64" end2="66" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="66" end1="67" start2="67" end2="71" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="68" end1="71" start2="72" end2="73" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="75" end1="75" start2="77" end2="173" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="84" end1="102" start2="182" end2="184" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="116" end1="117" start2="198" end2="199" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="160" end1="168" start2="242" end2="242" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-      </ranges>
-    </file>
     <file path="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java">
       <ranges>
-        <range start1="8" end1="8" start2="8" end2="9" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="18" end1="20" start2="19" end2="21" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="31" end1="32" start2="32" end2="36" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="37" end1="39" start2="41" end2="42" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="49" end1="50" start2="52" end2="54" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="64" end1="65" start2="68" end2="69" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="79" end1="80" start2="83" end2="84" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="5" end1="5" start2="5" end2="7" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
+        <range start1="6" end1="6" start2="8" end2="9" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
+        <range start1="15" end1="16" start2="18" end2="19" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
+        <range start1="19" end1="19" start2="22" end2="23" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
+        <range start1="20" end1="20" start2="24" end2="31" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
+        <range start1="40" end1="40" start2="51" end2="52" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
+        <range start1="42" end1="42" start2="54" end2="55" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="86" end1="86" start2="99" end2="114" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/FilterIrrelevantDependencies.java">
+    <file path="$PROJECT_DIR$/src/main/java/org/example/Map_Reduce/CreateTrainingVectors.java">
       <ranges>
-        <range start1="7" end1="7" start2="7" end2="8" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="23" end1="24" start2="24" end2="25" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="37" end1="37" start2="38" end2="39" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="47" end1="48" start2="49" end2="50" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainArgs.java">
-      <ranges>
-        <range start1="4" end1="8" start2="4" end2="8" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="21" end1="25" start2="21" end2="25" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="27" end1="28" start2="27" end2="28" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="31" end1="32" start2="31" end2="32" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="35" end1="37" start2="35" end2="37" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="39" end1="40" start2="39" end2="40" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="42" end1="42" start2="42" end2="48" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="3" end1="3" start2="3" end2="4" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
+        <range start1="16" end1="17" start2="17" end2="18" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
+        <range start1="32" end1="33" start2="33" end2="34" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="37" end1="42" start2="38" end2="44" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
+        <range start1="50" end1="51" start2="52" end2="53" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
+        <range start1="53" end1="58" start2="55" end2="60" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
       </ranges>
     </file>
     <file path="$PROJECT_DIR$/src/main/java/org/example/CreateJobs/InputOutputNames.java">
       <ranges>
-        <range start1="20" end1="21" start2="20" end2="20" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="28" end1="31" start2="27" end2="29" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="34" end1="36" start2="32" end2="34" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="39" end1="40" start2="37" end2="38" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="41" end1="42" start2="39" end2="40" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="43" end1="44" start2="41" end2="48" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
-        <range start1="45" end1="50" start2="49" end2="50" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="52" end1="61" start2="52" end2="58" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="63" end1="65" start2="60" end2="62" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
-        <range start1="70" end1="88" start2="67" end2="67" changelist="6b8f496c-591a-4913-906c-deeaf4e1ac83" />
+        <range start1="3" end1="3" start2="3" end2="5" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
+        <range start1="37" end1="37" start2="39" end2="40" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
+        <range start1="40" end1="40" start2="43" end2="45" changelist="85979f3d-fd97-43cf-92a5-791a05d7b331" />
+        <range start1="53" end1="58" start2="58" end2="66" changelist="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" />
       </ranges>
     </file>
   </component>
@@ -145,7 +101,7 @@
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -180,9 +136,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="InputOutputNames" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.CreateJobs.InputOutputNames" />
+      <module name="DSP_3_Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.CreateJobs.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainJobs" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.CreateJobs.MainJobs" />
+      <module name="DSP_3_Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.CreateJobs.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Graph" />
+        <item itemvalue="Application.MainJobs" />
+        <item itemvalue="Application.InputOutputNames" />
         <item itemvalue="Application.CalculateClassifier" />
       </list>
     </recent_temporary>
@@ -190,7 +174,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="72d41b4e-4b88-4bec-9eab-9732165f077c" name="Changes" comment="" />
+      <changelist id="39c0fb23-e4d4-4d3d-858d-9d4c1156a7da" name="Changes" comment="" />
       <created>1677157837807</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -199,6 +183,7 @@
       <workItem from="1677158495634" duration="589000" />
       <workItem from="1677159099604" duration="15897000" />
       <workItem from="1677180654006" duration="11361000" />
+      <workItem from="1677435529317" duration="7150000" />
     </task>
     <servers />
   </component>
@@ -221,8 +206,28 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java</url>
-          <line>27</line>
+          <line>47</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/CreateJobs/MainJobs.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/DependancyTree/Graph.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

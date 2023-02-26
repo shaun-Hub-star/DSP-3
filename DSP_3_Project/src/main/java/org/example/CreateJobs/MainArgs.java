@@ -7,8 +7,11 @@ public class MainArgs {
     private static int DpMin = 5; //5 by default
     private static String outputPath;
 
+    public static void init(String[] args){
+        new MainArgs(args);
+    }
 
-    public MainArgs(String[] args){
+    private MainArgs(String[] args){
         /*args:
          * 0: syntactic n-gram
          * 1: hypernym
