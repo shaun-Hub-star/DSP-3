@@ -1,0 +1,96 @@
+<html>
+<head>
+    <title>Model Stats</title>
+   <style>
+        body {
+            background-color: #292929;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 40px
+            text-decoration:underline;
+        }
+        
+        h2 {
+            margin-top: 30px;
+        }
+        
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            margin-left: 20px;
+            text-indent: -10px;
+            padding-left: 10px;
+        }
+        
+        .true-positive {
+            color: #3cb371;
+        }
+        
+        .false-positive {
+            color: #ff6347;
+        }
+        
+        .true-negative {
+            color: #3cb371;
+        }
+        
+        .false-negative {
+            color: #ff6347;
+        }
+        
+        pre {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style></head>
+<body>
+    <h1>Model Stats</h1>
+    <h2 class="true-positive">True Positives</h2>
+    <ul>
+        <li>idea design</li>
+        <li>page author</li>
+        <li>tanganyika lake</li>
+        <li>oil fuel</li>
+        <li>rama avatar</li>
+    </ul>
+    <h2 class="false-positive">False Positives</h2>
+    <ul>
+        <li>excess acid</li>
+        <li>statesman priest</li>
+        <li>boat u</li>
+        <li>writ knight</li>
+        <li>arm robber</li>
+    </ul>
+    <h2 class="true-negative">True Negatives</h2>
+    <ul>
+        <li>top street</li>
+        <li>road mountain</li>
+        <li>rate reward</li>
+        <li>sign y</li>
+        <li>heat air</li>
+    </ul>
+    <h2 class="false-negative">False Negatives</h2>
+    <ul>
+        <li>sex gender</li>
+        <li>luke saint</li>
+        <li>paper report</li>
+        <li>rail line</li>
+        <li>england dominion</li>
+    </ul>
+    <h2>Model Stats</h2>
+    <pre>
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.061    0.053    0.233      0.061    0.096      0.014    0.539     0.220     0
+                 0.947    0.939    0.792      0.947    0.863      0.014    0.539     0.836     1
+Weighted Avg.    0.761    0.754    0.675      0.761    0.702      0.014    0.539     0.707     
+</pre>
+</body>
+</html>
